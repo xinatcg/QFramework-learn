@@ -3,6 +3,7 @@ using QFramework.Architecture;
 using QFramework.Command;
 using QFramework.Controller;
 using QFramework.Rule;
+using QFramework.TypeEvent;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -16,6 +17,7 @@ namespace QFramework.learn
         protected override void OnExecute()
         {
             this.GetModel<CounterAppModel>().Count++;
+            this.SendEvent<CountChangeEvent>();
         }
     }
 
@@ -24,10 +26,14 @@ namespace QFramework.learn
         protected override void OnExecute()
         {
             this.GetModel<CounterAppModel>().Count--;
+            this.SendEvent<CountChangeEvent>();
         }
     }
-    
-    
+
+    public struct CountChangeEvent
+    {
+    }
+
     // Controller
     public class CounterAppController : MonoBehaviour, IController
     {
@@ -35,34 +41,31 @@ namespace QFramework.learn
         public Button BtnAdd;
         public Button BtnSub;
         public Text CountText;
-        
+
         // Model
         public CounterAppModel MAppModel;
-        
+
+
         void Start()
         {
             MAppModel = this.GetModel<CounterAppModel>();
-            
+
             // Attach the button click listener
             BtnAdd.onClick.AddListener((() =>
             {
                 // Interaction logic
                 this.SendCommand<IncreaseCountCommand>();
-                
-                // Presentation logic
-                UpdateView();
-                
-            })); 
+            }));
             BtnSub.onClick.AddListener((() =>
             {
                 // Interaction logic
                 this.SendCommand<DecreaseCountCommand>();
-                
-                // Presentation logic
-                UpdateView();
-                
-            })); 
+            }));
             UpdateView();
+
+            // Presentation logic
+            this.RegisterEvent<CountChangeEvent>(e => { UpdateView(); })
+                .UnRegisterWhenGameObjectDestroyed(gameObject);
         }
 
         void UpdateView()
@@ -74,7 +77,7 @@ namespace QFramework.learn
         {
             return CounterApp.Interface;
         }
-        
+
         private void OnDestroy()
         {
             MAppModel = null;
