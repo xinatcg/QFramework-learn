@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -5,7 +6,7 @@ using UnityEngine.UI;
 namespace QFramework.learn
 {
     // Controller
-    public class CounterAppController : MonoBehaviour
+    public class CounterAppController : MonoBehaviour, IController
     {
         // View
         public Button BtnAdd;
@@ -13,15 +14,17 @@ namespace QFramework.learn
         public Text CountText;
         
         // Model
-        public int mCount = 0;
+        public CounterAppModel MAppModel;
         
         void Start()
         {
+            MAppModel = this.GetModel<CounterAppModel>();
+            
             // Attach the button click listener
             BtnAdd.onClick.AddListener((() =>
             {
                 // Interaction logic
-                mCount++;
+                MAppModel.Count++;
                 
                 // Presentation logic
                 UpdateView();
@@ -30,7 +33,7 @@ namespace QFramework.learn
             BtnSub.onClick.AddListener((() =>
             {
                 // Interaction logic
-                mCount--;
+                MAppModel.Count--;
                 
                 // Presentation logic
                 UpdateView();
@@ -41,12 +44,17 @@ namespace QFramework.learn
 
         void UpdateView()
         {
-            CountText.text = mCount.ToString();
+            CountText.text = MAppModel.Count.ToString();
+        }
+
+        public IArchitecture GetArchitecture()
+        {
+            return CounterApp.Interface;
         }
         
-
-        void Update()
+        private void OnDestroy()
         {
+            MAppModel = null;
         }
     }
 }
