@@ -1,13 +1,33 @@
 using DefaultNamespace;
 using QFramework.Architecture;
+using QFramework.Command;
 using QFramework.Controller;
 using QFramework.Rule;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using NotImplementedException = System.NotImplementedException;
 
 namespace QFramework.learn
 {
+    // Command
+    public class IncreaseCountCommand : AbstractCommand
+    {
+        protected override void OnExecute()
+        {
+            this.GetModel<CounterAppModel>().Count++;
+        }
+    }
+
+    public class DecreaseCountCommand : AbstractCommand
+    {
+        protected override void OnExecute()
+        {
+            this.GetModel<CounterAppModel>().Count--;
+        }
+    }
+    
+    
     // Controller
     public class CounterAppController : MonoBehaviour, IController
     {
@@ -27,7 +47,7 @@ namespace QFramework.learn
             BtnAdd.onClick.AddListener((() =>
             {
                 // Interaction logic
-                MAppModel.Count++;
+                this.SendCommand<IncreaseCountCommand>();
                 
                 // Presentation logic
                 UpdateView();
@@ -36,7 +56,7 @@ namespace QFramework.learn
             BtnSub.onClick.AddListener((() =>
             {
                 // Interaction logic
-                MAppModel.Count--;
+                this.SendCommand<DecreaseCountCommand>();
                 
                 // Presentation logic
                 UpdateView();
