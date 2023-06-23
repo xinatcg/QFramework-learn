@@ -1,4 +1,7 @@
 using DefaultNamespace;
+using QFramework.Architecture;
+using QFramework.Controller;
+using QFramework.Rule;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;

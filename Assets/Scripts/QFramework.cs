@@ -25,7 +25,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace QFramework
+namespace QFrameworkSingleFile
 {
     #region Architecture
 

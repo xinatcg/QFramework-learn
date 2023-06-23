@@ -1,4 +1,5 @@
 using QFramework;
+using QFramework.Model;
 
 namespace DefaultNamespace
 {
