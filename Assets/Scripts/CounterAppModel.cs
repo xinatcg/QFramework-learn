@@ -11,6 +11,7 @@ namespace DefaultNamespace
     {
         private int mCount;
 
+        private Storage mStorage;
         public int Count
         {
             get => mCount;
@@ -19,21 +20,20 @@ namespace DefaultNamespace
                 if (mCount != value)
                 {
                     mCount = value;
-                    this.GetUtility<Storage>().SaveInt(nameof(Count), Count);
+                    mStorage.SaveInt(nameof(Count), Count);
                 }
             }
         }
         protected override void OnInit()
         {
-            var storage = this.GetUtility<Storage>();
+            mStorage = this.GetUtility<Storage>();
 
-            Count = storage.LoadInt(nameof(Count));
+            Count = mStorage.LoadInt(nameof(Count));
 
-            CounterApp.Interface.RegisterEvent<CountChangeEvent>(e =>
-            {
-                storage.SaveInt(nameof(Count), Count);
-            });
-
+            // CounterApp.Interface.RegisterEvent<CountChangeEvent>(e =>
+            // {
+            //     mStorage.SaveInt(nameof(Count), Count);
+            // });
         }
     }
 
