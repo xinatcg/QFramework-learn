@@ -1,4 +1,4 @@
-using DefaultNamespace;
+using CounterApp;
 using QFramework.Architecture;
 using QFramework.Command;
 using QFramework.Controller;
@@ -9,26 +9,8 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 using NotImplementedException = System.NotImplementedException;
 
-namespace QFramework.learn
+namespace CounterApp
 {
-    // Command
-    public class IncreaseCountCommand : AbstractCommand
-    {
-        protected override void OnExecute()
-        {
-            var model = this.GetModel<CounterAppModel>();
-            model.Count.Value++;
-        }
-    }
-
-    public class DecreaseCountCommand : AbstractCommand
-    {
-        protected override void OnExecute()
-        {
-            this.GetModel<CounterAppModel>().Count.Value--;
-        }
-    }
-
     // Controller
     public class CounterAppController : MonoBehaviour, IController
     {
@@ -69,7 +51,7 @@ namespace QFramework.learn
 
         public IArchitecture GetArchitecture()
         {
-            return CounterApp.Interface;
+            return global::CounterApp.CounterApp.Interface;
         }
 
         private void OnDestroy()

@@ -1,7 +1,8 @@
+using CounterApp.Utility;
 using QFramework;
 using QFramework.Architecture;
 
-namespace DefaultNamespace
+namespace CounterApp
 {
     public class CounterApp: Architecture<CounterApp>
     {

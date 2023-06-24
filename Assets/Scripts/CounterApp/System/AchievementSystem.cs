@@ -1,9 +1,9 @@
-using QFramework.learn;
+using CounterApp;
 using QFramework.Rule;
 using QFramework.System;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace CounterApp
 {
     public class AchievementSystem : AbstractSystem
     {

@@ -1,11 +1,12 @@
 using QFramework;
 using QFramework.BindableProperty;
-using QFramework.learn;
+using CounterApp;
+using CounterApp.Utility;
 using QFramework.Rule;
 using UnityEngine;
 using AbstractModel = QFramework.Model.AbstractModel;
 
-namespace DefaultNamespace
+namespace CounterApp
 {
     public class CounterAppModel : AbstractModel
     {
@@ -21,16 +22,5 @@ namespace DefaultNamespace
         }
     }
 
-    public class Storage : QFramework.Utility.IUtility
-    {
-        public void SaveInt(string key, int value)
-        {
-            PlayerPrefs.SetInt(key, value);
-        }
 
-        public int LoadInt(string key, int defaultValue = 0)
-        {
-            return PlayerPrefs.GetInt(key, defaultValue);
-        }
-    }
 }
