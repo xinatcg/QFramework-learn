@@ -10,6 +10,8 @@ namespace DefaultNamespace
             this.RegisterModel(new CounterAppModel());
             
             this.RegisterUtility(new Storage());
+            
+            this.RegisterSystem(new AchievementSystem());
         }
     }
 }
