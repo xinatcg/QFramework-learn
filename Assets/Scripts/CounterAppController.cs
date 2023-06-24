@@ -16,8 +16,17 @@ namespace QFramework.learn
     {
         protected override void OnExecute()
         {
-            this.GetModel<CounterAppModel>().Count++;
+            var model = this.GetModel<CounterAppModel>();
+            model.Count++;
             this.SendEvent<CountChangeEvent>();
+            if (model.Count == 10)
+            {
+                Debug.Log($"Triggered Click Master Achievement: {model.Count}");
+            }
+            else if (model.Count == 20)
+            {
+                Debug.Log($"Triggered Click Expert Achievement: {model.Count}");
+            }
         }
     }
 
