@@ -1,14 +1,28 @@
 using QFramework;
 using QFramework.Model;
+using UnityEngine;
 
 namespace DefaultNamespace
 {
     public class CounterAppModel: AbstractModel
     {
-        public int Count = 0;
+        private int mCount;
+
+        public int Count
+        {
+            get => mCount;
+            set
+            {
+                if (mCount != value)
+                {
+                    mCount = value;
+                    PlayerPrefs.SetInt(nameof(Count), mCount);
+                }
+            }
+        }
         protected override void OnInit()
         {
-            this.Count = 0;
+            Count = PlayerPrefs.GetInt(nameof(Count), mCount);
         }
     }
 }
