@@ -8,6 +8,8 @@ namespace DefaultNamespace
         protected override void Init()
         {
             this.RegisterModel(new CounterAppModel());
+            
+            this.RegisterUtility(new Storage());
         }
     }
 }
