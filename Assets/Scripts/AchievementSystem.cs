@@ -11,15 +11,15 @@ namespace DefaultNamespace
         {
             var model = this.GetModel<CounterAppModel>();
 
-            this.RegisterEvent<CountChangeEvent>(e =>
+            model.Count.Register(count =>
             {
-                if (model.Count == 10)
+                if (count == 10)
                 {
-                    Debug.Log($"Triggered Click Master Achievement: {model.Count}");
+                    Debug.Log($"Triggered Click Master Achievement: {count}");
                 }
-                else if (model.Count == 20)
+                else if (count == 20)
                 {
-                    Debug.Log($"Triggered Click Expert Achievement: {model.Count}");
+                    Debug.Log($"Triggered Click Expert Achievement: {count}");
                 }
             });
         }

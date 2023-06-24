@@ -1,43 +1,27 @@
 using QFramework;
+using QFramework.BindableProperty;
 using QFramework.learn;
 using QFramework.Rule;
-using QFrameworkSingleFile;
 using UnityEngine;
 using AbstractModel = QFramework.Model.AbstractModel;
 
 namespace DefaultNamespace
 {
-    public class CounterAppModel: AbstractModel
+    public class CounterAppModel : AbstractModel
     {
-        private int mCount;
+        public BindableProperty<int> Count { get; } = new BindableProperty<int>();
 
-        private Storage mStorage;
-        public int Count
-        {
-            get => mCount;
-            set
-            {
-                if (mCount != value)
-                {
-                    mCount = value;
-                    mStorage.SaveInt(nameof(Count), Count);
-                }
-            }
-        }
         protected override void OnInit()
         {
-            mStorage = this.GetUtility<Storage>();
+            var storage = this.GetUtility<Storage>();
 
-            Count = mStorage.LoadInt(nameof(Count));
+            Count.SetValueWithoutEvent(storage.LoadInt(nameof(Count)));
 
-            // CounterApp.Interface.RegisterEvent<CountChangeEvent>(e =>
-            // {
-            //     mStorage.SaveInt(nameof(Count), Count);
-            // });
+            Count.Register(newCount => { storage.SaveInt(nameof(Count), newCount); });
         }
     }
 
-    public class Storage :  QFramework.Utility.IUtility
+    public class Storage : QFramework.Utility.IUtility
     {
         public void SaveInt(string key, int value)
         {

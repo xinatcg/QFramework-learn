@@ -17,8 +17,7 @@ namespace QFramework.learn
         protected override void OnExecute()
         {
             var model = this.GetModel<CounterAppModel>();
-            model.Count++;
-            this.SendEvent<CountChangeEvent>();
+            model.Count.Value++;
         }
     }
 
@@ -26,13 +25,8 @@ namespace QFramework.learn
     {
         protected override void OnExecute()
         {
-            this.GetModel<CounterAppModel>().Count--;
-            this.SendEvent<CountChangeEvent>();
+            this.GetModel<CounterAppModel>().Count.Value--;
         }
-    }
-
-    public struct CountChangeEvent
-    {
     }
 
     // Controller
@@ -62,10 +56,9 @@ namespace QFramework.learn
                 // Interaction logic
                 this.SendCommand<DecreaseCountCommand>();
             }));
-            UpdateView();
 
             // Presentation logic
-            this.RegisterEvent<CountChangeEvent>(e => { UpdateView(); })
+            MAppModel.Count.RegisterWithInitValue(_ => { UpdateView(); })
                 .UnRegisterWhenGameObjectDestroyed(gameObject);
         }
 
