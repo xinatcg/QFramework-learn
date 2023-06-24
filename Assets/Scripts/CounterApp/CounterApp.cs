@@ -13,6 +13,10 @@ namespace CounterApp
             this.RegisterUtility(new Storage());
             
             this.RegisterSystem(new AchievementSystem());
+            
+            // Test Query
+            this.RegisterModel(new StudentModel());
+            this.RegisterModel(new TeacherModel());
         }
     }
 }
