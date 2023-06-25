@@ -13,9 +13,24 @@ namespace CounterApp.Event
 
         private void Start()
         {
-            TypeEventSystem.Global.Register<TestEventA>(e => { Debug.Log(e.Age); })
-                .UnRegisterWhenGameObjectDestroyed(gameObject);
+            TypeEventSystem.Global.Register<TestEventA>(e => { Debug.Log("TypeEvent Basic" + e.Age); })
+                .UnRegisterWhenGameObjectDestroyed(gameObject); // better unregister way
+            
+            // traditional way event register 1
+            /*TypeEventSystem.Global.Register<TestEventA>(OnEventA);*/
         }
+
+        // traditional way event register 2
+        /*void OnEventA(TestEventA eventA)
+        {
+            
+        }*/
+
+        // traditional way event register 3
+        /*private void OnDestroy()
+        {
+            TypeEventSystem.Global.UnRegister<TestEventA>(OnEventA);
+        }*/
 
         private void Update()
         {
