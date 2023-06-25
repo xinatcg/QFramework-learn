@@ -1,8 +1,8 @@
 using System;
 using CounterApp;
-using QFramework.Architecture;
-using QFramework.Controller;
-using QFramework.Rule;
+using QFrameworkUml.Architecture;
+using QFrameworkUml.Controller;
+using QFrameworkUml.Rule;
 using UnityEditor;
 using UnityEditor.PackageManager.UI;
 using UnityEngine;

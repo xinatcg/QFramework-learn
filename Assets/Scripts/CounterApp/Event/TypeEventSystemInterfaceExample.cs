@@ -1,6 +1,6 @@
 using System;
-using QFramework.Architecture;
-using QFramework.TypeEvent;
+using QFrameworkUml.Architecture;
+using QFrameworkUml.TypeEvent;
 using UnityEngine;
 
 namespace CounterApp.Event

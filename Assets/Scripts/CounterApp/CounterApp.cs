@@ -1,7 +1,6 @@
 using CounterApp.Utility;
-using QFramework;
-using QFramework.Architecture;
-using QFramework.Command;
+using QFrameworkUml.Architecture;
+using QFrameworkUml.Command;
 using UnityEngine;
 
 namespace CounterApp

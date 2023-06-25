@@ -1,7 +1,7 @@
 using CounterApp.Query;
-using QFramework.Architecture;
-using QFramework.Controller;
-using QFramework.Rule;
+using QFrameworkUml.Architecture;
+using QFrameworkUml.Controller;
+using QFrameworkUml.Rule;
 using UnityEngine;
 using UnityEngine.UI;
 

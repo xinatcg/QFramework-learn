@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using QFramework.Model;
+using QFrameworkUml.Model;
 
 namespace CounterApp
 {

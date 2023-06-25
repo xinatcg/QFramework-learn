@@ -1,6 +1,6 @@
 using CounterApp;
-using QFramework.Rule;
-using QFramework.System;
+using QFrameworkUml.Rule;
+using QFrameworkUml.System;
 using UnityEngine;
 
 namespace CounterApp

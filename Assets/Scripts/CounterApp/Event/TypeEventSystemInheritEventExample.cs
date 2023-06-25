@@ -1,5 +1,5 @@
 using System;
-using QFramework.TypeEvent;
+using QFrameworkUml.TypeEvent;
 using UnityEngine;
 
 namespace CounterApp.Event

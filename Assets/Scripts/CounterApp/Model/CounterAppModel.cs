@@ -1,10 +1,7 @@
-using QFramework;
-using QFramework.BindableProperty;
-using CounterApp;
+using QFrameworkUml.BindableProperty;
 using CounterApp.Utility;
-using QFramework.Rule;
-using UnityEngine;
-using AbstractModel = QFramework.Model.AbstractModel;
+using QFrameworkUml.Rule;
+using AbstractModel = QFrameworkUml.Model.AbstractModel;
 
 namespace CounterApp
 {

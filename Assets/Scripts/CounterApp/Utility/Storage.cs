@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace CounterApp.Utility
 {
-    public class Storage : QFramework.Utility.IUtility
+    public class Storage : QFrameworkUml.Utility.IUtility
     {
         public void SaveInt(string key, int value)
         {

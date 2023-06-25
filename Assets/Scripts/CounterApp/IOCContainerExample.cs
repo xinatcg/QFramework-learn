@@ -1,4 +1,4 @@
-using QFramework.IOC;
+using QFrameworkUml.IOC;
 using UnityEngine;
 
 namespace CounterApp

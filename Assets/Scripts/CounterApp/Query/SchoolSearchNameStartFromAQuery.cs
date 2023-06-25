@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using QFramework.Query;
-using QFramework.Rule;
+using QFrameworkUml.Query;
+using QFrameworkUml.Rule;
 
 namespace CounterApp.Query
 {

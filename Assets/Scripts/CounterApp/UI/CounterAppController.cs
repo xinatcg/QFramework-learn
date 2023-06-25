@@ -1,9 +1,9 @@
 using CounterApp;
-using QFramework.Architecture;
-using QFramework.Command;
-using QFramework.Controller;
-using QFramework.Rule;
-using QFramework.TypeEvent;
+using QFrameworkUml.Architecture;
+using QFrameworkUml.Command;
+using QFrameworkUml.Controller;
+using QFrameworkUml.Rule;
+using QFrameworkUml.TypeEvent;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
