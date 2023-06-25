@@ -1,6 +1,8 @@
 using CounterApp.Utility;
 using QFramework;
 using QFramework.Architecture;
+using QFramework.Command;
+using UnityEngine;
 
 namespace CounterApp
 {
@@ -17,6 +19,14 @@ namespace CounterApp
             // Test Query
             this.RegisterModel(new StudentModel());
             this.RegisterModel(new TeacherModel());
+        }
+
+        // When invoke Command for this Architecture, will invoke this method
+        protected override void ExecuteCommand(ICommand command)
+        {
+            Debug.Log("Before " + command.GetType().Name + "Execute");
+            base.ExecuteCommand(command);
+            Debug.Log("After " + command.GetType().Name + "Execute");
         }
     }
 }
