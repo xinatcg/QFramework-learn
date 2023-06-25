@@ -11,6 +11,15 @@ namespace CounterApp.Event
             public int GetAge();
         }
 
+        public struct EventA : IEventA
+        {
+            public int Age;
+            public int GetAge()
+            {
+                return Age;
+            }
+        }
+        
         public struct EventB : IEventA
         {
             public int Age;
@@ -22,7 +31,17 @@ namespace CounterApp.Event
 
         private void Start()
         {
-            TypeEventSystem.Global.Register<IEventA>(e => { Debug.Log("TypeEvent Inherit" + e.GetAge()); })
+            TypeEventSystem.Global.Register<IEventA>(e =>
+                {
+                    if (e is EventA)
+                    {
+                        Debug.Log("TypeEvent Inherit EventA " + e.GetAge());
+                    }
+                    if (e is EventB)
+                    {
+                        Debug.Log("TypeEvent Inherit EventB " + e.GetAge());
+                    }
+                })
                 .UnRegisterWhenGameObjectDestroyed(gameObject);
         }
 
@@ -30,19 +49,17 @@ namespace CounterApp.Event
         {
             if (Input.GetMouseButtonDown(0))
             {
-                TypeEventSystem.Global.Send<IEventA>(new EventB()
+                TypeEventSystem.Global.Send<IEventA>(new EventA()
                 {
                     Age = 18
                 });
-
-                // 无效
-                TypeEventSystem.Global.Send<EventB>();
             }
 
             if (Input.GetMouseButtonDown(1))
             {
-                TypeEventSystem.Global.Send(new EventB()
+                TypeEventSystem.Global.Send<IEventA>(new EventB()
                 {
+                    Age = 0
                 });
             }
         }
